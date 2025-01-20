@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "84b0797d-03a0-41cb-834f-112e946e988f",
+		"name": "hr-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1356469"
+	},
+	"item": [
+		{
+			"name": "Submit Leave Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 取得 response 中的 id 值\r",
+							"var responseId = pm.response.json().id;\r",
+							"\r",
+							"// 將 id 儲存到 Collection 變數中\r",
+							"pm.collectionVariables.set(\"leaveRequestId\", responseId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user_id\": 1,\r\n  \"start_date\": 1737405670,\r\n  \"end_date\": 1737425670,\r\n  \"leave_type\": \"annual\",\r\n  \"substitute_id\": 2,\r\n  \"reason\": \"Family vacation\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/leave-requests",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"leave-requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Leave Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/leave-requests",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"leave-requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/employees",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Leave Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"approve\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/leave-requests/{{leaveRequestId}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"leave-requests",
+						"{{leaveRequestId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Leave Request",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/leave-requests/{{leaveRequestId}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"leave-requests",
+						"{{leaveRequestId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "leaveRequestId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "leaveRequestId",
+			"value": ""
+		}
+	]
+}

@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS departments;
+DROP TABLE IF EXISTS approvers;
+DROP TABLE IF EXISTS role_department;
