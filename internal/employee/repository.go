@@ -42,8 +42,8 @@ func (r *repository) ListEmployees(ctx context.Context, filter *ListEmployeesFil
 		if filter.Name != "" {
 			query = query.Where("name LIKE ?", "%"+filter.Name+"%")
 		}
-		if filter.Position != "" {
-			query = query.Where("position LIKE ?", "%"+filter.Position+"%")
+		if filter.Title != "" {
+			query = query.Where("title LIKE ?", "%"+filter.Title+"%")
 		}
 		if filter.MinSalary > 0 {
 			query = query.Where("salary >= ?", filter.MinSalary)

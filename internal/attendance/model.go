@@ -7,7 +7,6 @@ import (
 type LeaveRequest struct {
 	ID              int       `gorm:"column:id;primaryKey" json:"id" description:"單號"`
 	EmployeeID      int       `gorm:"column:employee_id" json:"employee_id" description:"員工編號"`
-	EmployeeName    string    `gorm:"column:employee_name" json:"employee_name" description:"姓名"`
 	LeaveType       string    `gorm:"column:leave_type" json:"leave_type" description:"假別"`
 	StartTime       time.Time `gorm:"column:start_time" json:"start_time" description:"開始時間"`
 	EndTime         time.Time `gorm:"column:end_time" json:"end_time" description:"結束時間"`

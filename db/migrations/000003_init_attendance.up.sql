@@ -2,7 +2,6 @@ CREATE TABLE leave_requests
 (
     id               INT PRIMARY KEY AUTO_INCREMENT,
     employee_id      INT          NOT NULL,
-    employee_name    VARCHAR(255) NOT NULL,
     leave_type       VARCHAR(255) NOT NULL,
     start_time       DATETIME     NOT NULL,
     end_time         DATETIME     NOT NULL,

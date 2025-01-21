@@ -22,7 +22,7 @@ type Handler struct {
 
 type AddEmployeeRequest struct {
 	Name        string  `json:"name" binding:"required" example:"John Doe"`
-	Position    string  `json:"position" binding:"required" example:"Software Engineer"`
+	Title       string  `json:"title" binding:"required" example:"Software Engineer"`
 	ContactInfo string  `json:"contact_info" binding:"required" example:"john.doe@example.com"`
 	Salary      float64 `json:"salary" binding:"required" example:"50000"`
 }
@@ -30,7 +30,7 @@ type AddEmployeeRequest struct {
 type AddEmployeeResponse struct {
 	ID          int     `json:"id" example:"1"`
 	Name        string  `json:"name" example:"John Doe"`
-	Position    string  `json:"position" example:"Software Engineer"`
+	Title       string  `json:"title" example:"Software Engineer"`
 	ContactInfo string  `json:"contact_info" example:"john.doe@example.com"`
 	Salary      float64 `json:"salary" example:"50000"`
 }
@@ -42,7 +42,7 @@ func (h *Handler) AddEmployee(c *gin.Context) {
 		return
 	}
 
-	createdEmp, err := h.service.AddEmployee(c.Request.Context(), req.Name, req.Position, req.ContactInfo, req.Salary)
+	createdEmp, err := h.service.AddEmployee(c.Request.Context(), req.Name, req.Title, req.ContactInfo, req.Salary)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -51,7 +51,7 @@ func (h *Handler) AddEmployee(c *gin.Context) {
 	resp := AddEmployeeResponse{
 		ID:          createdEmp.ID,
 		Name:        createdEmp.Name,
-		Position:    createdEmp.Position,
+		Title:       createdEmp.Title,
 		ContactInfo: createdEmp.ContactInfo,
 		Salary:      createdEmp.Salary,
 	}
@@ -114,8 +114,8 @@ func (h *Handler) DeleteEmployee(c *gin.Context) {
 
 func (h *Handler) ListEmployees(c *gin.Context) {
 	filters := ListEmployeesFilter{
-		Name:     c.Query("name"),
-		Position: c.Query("position"),
+		Name:  c.Query("name"),
+		Title: c.Query("title"),
 	}
 
 	minSalary := c.Query("minSalary")

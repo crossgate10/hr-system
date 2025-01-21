@@ -34,7 +34,7 @@ func (h *Handler) ListLeaveRequests(c *gin.Context) {
 }
 
 type SubmitLeaveRequest struct {
-	UserID       int    `json:"user_id"`
+	EmployeeID   int    `json:"employee_id"`
 	StartDate    int64  `json:"start_date"`
 	EndDate      int64  `json:"end_date"`
 	LeaveType    string `json:"leave_type"`
@@ -43,12 +43,12 @@ type SubmitLeaveRequest struct {
 }
 
 type LeaveRequestResponse struct {
-	ID        int    `json:"id"`
-	UserID    int    `json:"user_id"`
-	StartDate int64  `json:"start_date"`
-	EndDate   int64  `json:"end_date"`
-	Reason    string `json:"reason"`
-	Approvers string `json:"approvers" description:"id1:status:unix1,id2:status:unix2" example:"1:1:1737393916,2:0:0"`
+	ID         int    `json:"id"`
+	EmployeeID int    `json:"employee_id"`
+	StartDate  int64  `json:"start_date"`
+	EndDate    int64  `json:"end_date"`
+	Reason     string `json:"reason"`
+	Approvers  string `json:"approvers" description:"id1:status:unix1,id2:status:unix2" example:"1:1:1737393916,2:0:0"`
 }
 
 func (h *Handler) SubmitLeaveRequest(c *gin.Context) {
@@ -62,7 +62,7 @@ func (h *Handler) SubmitLeaveRequest(c *gin.Context) {
 	}
 
 	leaveRequest := LeaveRequest{
-		EmployeeID:   req.UserID,
+		EmployeeID:   req.EmployeeID,
 		LeaveType:    req.LeaveType,
 		StartTime:    time.Unix(req.StartDate, 0),
 		EndTime:      time.Unix(req.EndDate, 0),
@@ -76,12 +76,12 @@ func (h *Handler) SubmitLeaveRequest(c *gin.Context) {
 	}
 
 	resp := LeaveRequestResponse{
-		ID:        createdLeaveRequest.ID,
-		UserID:    createdLeaveRequest.EmployeeID,
-		StartDate: createdLeaveRequest.StartTime.Unix(),
-		EndDate:   createdLeaveRequest.EndTime.Unix(),
-		Reason:    createdLeaveRequest.Description,
-		Approvers: createdLeaveRequest.Approvers,
+		ID:         createdLeaveRequest.ID,
+		EmployeeID: createdLeaveRequest.EmployeeID,
+		StartDate:  createdLeaveRequest.StartTime.Unix(),
+		EndDate:    createdLeaveRequest.EndTime.Unix(),
+		Reason:     createdLeaveRequest.Description,
+		Approvers:  createdLeaveRequest.Approvers,
 	}
 
 	c.JSON(http.StatusCreated, resp)

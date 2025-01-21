@@ -1,4 +1,16 @@
-INSERT INTO employees (name, position, contact_info, salary, status, created_at, updated_at)
-VALUES ('Alice Smith', 'Software Engineer', 'alice@example.com', 70000, 'active', NOW(), NOW()),
-       ('Bob Johnson', 'Product Manager', 'bob@example.com', 90000, 'active', NOW(), NOW()),
-       ('Charlie Brown', 'Designer', 'charlie@example.com', 60000, 'inactive', NOW(), NOW());
+INSERT INTO employees (name, title, role, contact_info, salary, status, created_at, updated_at)
+VALUES ('Alice Smith', 'Software Engineer', 'backend_member', 'alice@example.com', 70000, 'active', NOW(), NOW()),
+       ('Bob Johnson', 'Software Engineer', 'backend_member', 'bob@example.com', 90000, 'active', NOW(), NOW()),
+       ('Korey Flynn', 'Software Engineer', 'backend_manager', 'korey@example.com', 70000, 'active', NOW(), NOW()),
+       ('Gerald Reese', 'Software Engineer', 'frontend_member', 'gerald@example.com', 70000, 'active', NOW(), NOW()),
+       ('Cara Hutchinson', 'Software Engineer', 'frontend_member', 'cara@example.com', 90000, 'active', NOW(), NOW()),
+       ('Staci Rojas', 'Software Engineer', 'frontend_manager', 'staci@example.com', 90000, 'active', NOW(), NOW()),
+       ('Samuel Fletcher', 'Product Manager', 'pm_member', 'samuel@example.com', 70000, 'active', NOW(), NOW()),
+       ('Alexandria Russell', 'Product Manager', 'pm_member', 'alexandria@example.com', 70000, 'active', NOW(), NOW()),
+       ('Terra Payne', 'Product Manager', 'pm_manager', 'terra@example.com', 70000, 'active', NOW(), NOW()),
+       ('Bruno Tapia', 'Quality Assurance', 'qa_member', 'bruno@example.com', 90000, 'active', NOW(), NOW()),
+       ('Jesus Ball', 'Quality Assurance', 'qa_member', 'jesus@example.com', 90000, 'active', NOW(), NOW()),
+       ('Sydney Cortez', 'Quality Assurance', 'qa_manager', 'sydney@example.com', 90000, 'active', NOW(), NOW()),
+       ('Donte Rubio', 'Human Resources', 'hr', 'donte@example.com', 70000, 'active', NOW(), NOW()),
+       ('Maynard Vaughan', 'Human Resources', 'hr_manager', 'maynard@example.com', 70000, 'active', NOW(), NOW()),
+       ('Charlie Brown', 'Founder', 'boss', 'charlie@example.com', 600000, 'active', NOW(), NOW());

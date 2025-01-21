@@ -11,7 +11,6 @@ import (
 	"hr-system/internal/config"
 	"hr-system/internal/database"
 	"hr-system/internal/employee"
-	"hr-system/internal/user"
 )
 
 func main() {
@@ -24,11 +23,10 @@ func main() {
 	cache := database.InitRedis()
 
 	employeeRepo := employee.NewRepository(db)
-	userRepo := user.NewRepository(db)
 	attendanceRepo := attendance.NewRepository(db)
 
 	employeeService := employee.NewService(employeeRepo, cache, 7*24*time.Hour)
-	attendanceService := attendance.NewService(attendanceRepo, userRepo)
+	attendanceService := attendance.NewService(attendanceRepo)
 
 	router := gin.Default()
 	v1 := router.Group("/api/v1")

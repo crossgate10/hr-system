@@ -2,9 +2,7 @@ server:
   port: "8080"
 
 redis:
-#  addr: "localhost:6379"
   addr: "redis:6379"
 
 database:
-#  dsn: "root:root@tcp(localhost:3306)/hr_system?charset=utf8mb4&parseTime=True&loc=Local"
   dsn: "root:root@tcp(mysql:3306)/hr_system?charset=utf8mb4&parseTime=True&loc=Local"

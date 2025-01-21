@@ -12,7 +12,7 @@ import (
 )
 
 type Service interface {
-	AddEmployee(ctx context.Context, name, position, contactInfo string, salary float64) (*Employee, error)
+	AddEmployee(ctx context.Context, name, title, contactInfo string, salary float64) (*Employee, error)
 	GetEmployeeDetails(ctx context.Context, id int) (*Employee, error)
 	ListEmployees(ctx context.Context, filter *ListEmployeesFilter) ([]Employee, error)
 	UpdateEmployeeDetails(ctx context.Context, employee *Employee) error
@@ -29,10 +29,10 @@ func NewService(repo Repository, cache *redis.Client, cacheTTL time.Duration) Se
 	return &service{repo: repo, cache: cache, cacheTTL: cacheTTL}
 }
 
-func (s *service) AddEmployee(ctx context.Context, name, position, contactInfo string, salary float64) (*Employee, error) {
+func (s *service) AddEmployee(ctx context.Context, name, title, contactInfo string, salary float64) (*Employee, error) {
 	employee := &Employee{
 		Name:        name,
-		Position:    position,
+		Title:       title,
 		ContactInfo: contactInfo,
 		Salary:      salary,
 		Status:      Active,
@@ -128,8 +128,8 @@ func (s *service) getEmployeesCacheKey(filter *ListEmployeesFilter) string {
 	if filter.Name != "" {
 		parts = append(parts, fmt.Sprintf("name=%s", filter.Name))
 	}
-	if filter.Position != "" {
-		parts = append(parts, fmt.Sprintf("position=%s", filter.Position))
+	if filter.Title != "" {
+		parts = append(parts, fmt.Sprintf("title=%s", filter.Title))
 	}
 	if filter.MinSalary > 0 {
 		parts = append(parts, fmt.Sprintf("minSalary=%.2f", filter.MinSalary))

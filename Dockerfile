@@ -20,7 +20,7 @@ RUN go build -o hr-system ./cmd/app
 # Start a new stage from scratch
 FROM alpine:latest
 
-RUN apk add --no-cache bash
+RUN apk update && apk add --no-cache bash
 
 # Set the Current Working Directory inside the container
 WORKDIR /root/

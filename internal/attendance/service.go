@@ -3,8 +3,36 @@ package attendance
 import (
 	"context"
 	"fmt"
+)
 
-	"hr-system/internal/user"
+const (
+	backendMember   = "backend_member"
+	frontendMember  = "frontend_member"
+	pmMember        = "pm_member"
+	qaMember        = "qa_member"
+	backendManager  = "backend_manager"
+	frontendManager = "frontend_manager"
+	pmManager       = "pm_manager"
+	qaManager       = "qa_manager"
+	hr              = "hr"
+	hrManager       = "hr_manager"
+	boss            = "boss"
+)
+
+var (
+	approvalRules = map[string][]string{
+		backendMember:   {hr, backendMember, backendManager},
+		frontendMember:  {hr, frontendMember, frontendManager},
+		pmMember:        {hr, pmMember, pmManager},
+		qaMember:        {hr, qaMember, qaManager},
+		backendManager:  {hr, backendMember},
+		frontendManager: {hr, frontendMember},
+		pmManager:       {hr, pmMember},
+		qaManager:       {hr, qaMember},
+		hr:              {hrManager},
+		hrManager:       {hr},
+		boss:            {},
+	}
 )
 
 type Service interface {
@@ -15,12 +43,11 @@ type Service interface {
 }
 
 type service struct {
-	repo     Repository
-	userRepo user.Repository
+	repo Repository
 }
 
-func NewService(repo Repository, userRepo user.Repository) Service {
-	return &service{repo: repo, userRepo: userRepo}
+func NewService(repo Repository) Service {
+	return &service{repo: repo}
 }
 
 func (s *service) GetLeaveRequests(ctx context.Context, employeeID int) ([]LeaveRequest, error) {

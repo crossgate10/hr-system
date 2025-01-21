@@ -29,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"user_id\": 1,\r\n  \"start_date\": 1737405670,\r\n  \"end_date\": 1737425670,\r\n  \"leave_type\": \"annual\",\r\n  \"substitute_id\": 2,\r\n  \"reason\": \"Family vacation\"\r\n}\r\n",
+					"raw": "{\r\n  \"employee_id\": 1,\r\n  \"start_date\": 1737405670,\r\n  \"end_date\": 1737425670,\r\n  \"leave_type\": \"annual\",\r\n  \"substitute_id\": 2,\r\n  \"reason\": \"Family vacation\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
